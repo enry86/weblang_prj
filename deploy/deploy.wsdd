@@ -1,7 +1,7 @@
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" 
 xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 	<service name="GroupEval" provider="java:RPC">
-		<parameter name="className" value="weblanguages.project.eval.Service"/>
+		<parameter name="className" value="weblanguages.project.eval.GroupEval"/>
 		<parameter name="allowedMethods" value="*"/>
 	</service>
 </deployment>
