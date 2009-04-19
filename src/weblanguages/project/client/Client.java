@@ -12,11 +12,14 @@ public class Client {
 	
 	
 	public Client(){
-		int res=0;
+		double res=0;
+		String[] strs=new String[2];
+		strs[0]="ciao";
+		strs[1]="miao";
 		serv=new GroupEvalServiceLocator();
 		try {
 			stub=serv.getGroupEval();
-			res = stub.question(37);
+			res = stub.getAuthorsRank(strs);
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

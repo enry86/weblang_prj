@@ -1,7 +1,7 @@
 package weblanguages.project.eval;
 
 public class GroupEval {
-	public int question(int k){
-		return 42;
+	public double getAuthorsRank(String[] authors){
+		return 42.0;
 	}
 }
