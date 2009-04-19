@@ -1,6 +1,6 @@
 package weblanguages.project.eval;
 
-public class Service {
+public class GroupEval {
 	public int question(int k){
 		return 42;
 	}
