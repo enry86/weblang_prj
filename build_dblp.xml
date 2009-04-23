@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="GroupEval" default="init" basedir=".">
+<project name="DblpCoauthors" default="init" basedir=".">
 
 	<!-- 
     ======================
@@ -9,8 +9,8 @@
     -->
 
 	<target name="init">
-		<property file="build_eval.properties" />
-		<property file="project_eval.properties" />
+		<property file="build_dblp.properties" />
+		<property file="project_dblp.properties" />
 		
 		<echo message="ANT HOME: ${ant.home}"/>
                 <echo message=""/>
@@ -95,7 +95,7 @@
 		<axis-wsdl2java output="${src.stub}" testcase="false"   verbose="true" url="${local.wsdl}">
 			 <mapping
 			 	namespace= "http://${target.server}:${target.port}/${target.appname}/services/${service.name}"
-				package="groupeval.stub" />
+				package="coauthors.stub" />
 		</axis-wsdl2java>
 		
 	</target>
