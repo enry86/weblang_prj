@@ -28,10 +28,8 @@ public class Client {
 			stub_e=serv_e.getGroupEval();
 			res = stub_e.getAuthorsRank(strs);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(res);
@@ -50,10 +48,8 @@ public class Client {
 				System.out.println(res[k]);
 			}
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
