@@ -1,8 +1,6 @@
 package weblanguages.project.eval;
 
-import java.io.Serializable;
-
-public class EvalBean implements Serializable {
+public class EvalBean {
 	public EvalBean(){}
 	
 	private double h_rank;
@@ -29,4 +27,43 @@ public class EvalBean implements Serializable {
 		this.g_rank=g_rank;
 	}
 	
+	public double getH_max(){
+		return h_max;
+	}
+	
+	public void setH_max(double h_max){
+		this.h_max=h_max;
+	}
+	
+	public double getH_min(){
+		return h_min;
+	}
+	
+	public void setH_min(double h_min){
+		this.h_min=h_min;
+	}
+	
+	public double getG_max(){
+		return g_max;
+	}
+	
+	public void setG_max(double g_max){
+		this.g_max=g_max;
+	}
+	
+	public double getG_min(){
+		return g_min;
+	}
+	
+	public void setG_min(double g_min){
+		this.g_min=g_min;
+	}
+	
+	public int getNo_rank(){
+		return no_rank;
+	}
+	
+	public void setNo_rank(int no_rank){
+		this.no_rank=no_rank;
+	}
 }

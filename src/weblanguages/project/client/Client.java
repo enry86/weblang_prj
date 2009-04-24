@@ -14,7 +14,7 @@ public class Client {
 	
 	
 	public Client(){
-		test_eval();
+		//test_eval();
 		test_coau();
 	}
 	
@@ -37,9 +37,8 @@ public class Client {
 	
 	private void test_coau(){
 		String[] res;
-		String[] strs=new String[2];
-		strs[0]="ciao";
-		strs[1]="miao";
+		String[] strs=new String[1];
+		strs[0]="Fabio Casati";
 		serv_d=new DblpCoauthorsServiceLocator();
 		try {
 			stub_d=serv_d.getDblpCoauthors();
@@ -56,6 +55,6 @@ public class Client {
 	
 	
 	public static void main(String[] args){
-		Client cli = new Client();
+		new Client();
 	}
 }

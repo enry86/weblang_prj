@@ -21,7 +21,6 @@ public class DblpAnalyzer extends DefaultHandler {
 	private HashSet<String> coauth_tmp;
 	private String author;
 	private boolean auth;
-	private int count=0;
 	private ArrayList<String> fields;
 	
 	public DblpAnalyzer(){
@@ -49,7 +48,6 @@ public class DblpAnalyzer extends DefaultHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(coauth.size());
 		String[] res=new String[coauth.size()];
 		Iterator<String> i=coauth.iterator();
 		int k =0;
@@ -102,16 +100,5 @@ public class DblpAnalyzer extends DefaultHandler {
 		res.add("masterthesis");
 		res.add("www");
 		return res;
-	}
-	
-	
-	//**TO BE DELETED**//
-	public static void main(String[] args){
-		DblpAnalyzer d=new DblpAnalyzer();
-		
-		String[] ca=d.getCoauthors("Fabio Casati");
-//		for(int k=0;k<ca.length;k++){
-//			System.out.println(ca[k]);
-//		}
 	}
 }
