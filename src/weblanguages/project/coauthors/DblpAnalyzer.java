@@ -22,12 +22,14 @@ public class DblpAnalyzer extends DefaultHandler {
 	private String author;
 	private boolean auth;
 	private ArrayList<String> fields;
+	private StringBuffer chars; 
 	
 	public DblpAnalyzer(){
 		find=false;
 		auth=false;
 		coauth=new HashSet<String>();
 		coauth_tmp=new HashSet<String>();
+		chars=new StringBuffer();
 		spf=SAXParserFactory.newInstance();
 		fields=generateFields();
 		try {
@@ -64,11 +66,11 @@ public class DblpAnalyzer extends DefaultHandler {
 	
 	public void endElement(String uri, String localName, String qName) throws SAXException{
 		if(qName.compareTo("author")==0){
+			tmpstr=getChars();
 			if (tmpstr.compareToIgnoreCase(author)==0){
 				find=true;
 			}
 			else coauth_tmp.add(tmpstr);
-			tmpstr="";
 			auth=false;
 		}
 
@@ -78,14 +80,17 @@ public class DblpAnalyzer extends DefaultHandler {
 			}
 			find=false;
 			coauth_tmp.clear();
-			tmpstr="";
 		}
 	}
 	
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		if (auth) {
-			tmpstr=new String(ch,start,length);
-		}
+		if (auth) chars.append(ch,start,length);
+	}
+	
+	private String getChars(){
+		String res = chars.toString();
+		chars.setLength(0);
+		return res;
 	}
 	
 	
@@ -100,5 +105,15 @@ public class DblpAnalyzer extends DefaultHandler {
 		res.add("masterthesis");
 		res.add("www");
 		return res;
+	}
+	
+	public static void main(String[] args){
+		DblpAnalyzer a = new DblpAnalyzer();
+		String[] res;
+		res=a.getCoauthors("Fabio Casati");
+		for (int i=0;i<res.length;i++){
+			System.out.println(res[i]);
+		}
+		
 	}
 }
