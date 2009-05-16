@@ -36,15 +36,25 @@ public class Client {
 	}
 	
 	private void test_coau(){
-		String[] res;
-		String[] strs=new String[1];
-		strs[0]="Fabio Casati";
+		coauthors.stub.Coauthors[] res;
+		String[] input = new String[6];
+		input[0] = "Fabio Casati";
+		input[1] = "Maurizio Marchese";
+		input[2] = "Themis Palpanas";
+		input[3] = "Florian Daniel";
+		input[4] = "Fausto Giunchiglia";
+		input[5] = "Yannis Velegrakis";
+		
 		serv_d=new DblpCoauthorsServiceLocator();
 		try {
 			stub_d=serv_d.getDblpCoauthors();
-			res = stub_d.getDblpCoauthors(strs);
-			for (int k=0;k<res.length;k++){
-				System.out.println(res[k]);
+			res = stub_d.getDblpCoauthors(input);
+			for (int i = 0; i < input.length; i++){
+				System.out.println("#######"+input[i]);
+				String[] coauth = res[i].getCoauthors();
+				for (int k = 0; k < coauth.length; k++){
+					System.out.println(coauth[k]);
+				}
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();

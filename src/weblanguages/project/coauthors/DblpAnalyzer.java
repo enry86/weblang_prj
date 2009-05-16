@@ -1,104 +1,72 @@
 package weblanguages.project.coauthors;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
-import org.xml.sax.*;
-import org.xml.sax.helpers.DefaultHandler;
-
-public class DblpAnalyzer extends DefaultHandler {
-	private SAXParserFactory spf;
-	private SAXParser sax;
-	private boolean find;
-	private String tmpstr=""; 
-	private HashSet<String> coauth;
-	private HashSet<String> coauth_tmp;
-	private String author;
-	private boolean auth;
-	private ArrayList<String> fields;
+public class DblpAnalyzer  {
+	private ArrayList<String> authors;
+	private HashSet<String>[] coauthors;
 	
-	public DblpAnalyzer(){
-		find=false;
-		auth=false;
-		coauth=new HashSet<String>();
-		coauth_tmp=new HashSet<String>();
-		spf=SAXParserFactory.newInstance();
-		fields=generateFields();
-		try {
-			sax=spf.newSAXParser();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		}		
+	private String filename;
+	private DblpParser parser;
+	
+	public DblpAnalyzer(String file){
+		filename = file;
+		parser = new DblpParser(filename);
 	}
 	
-	public String[] getCoauthors(String auth){
-		author=auth;
-		try {
-			sax.parse("dblp.xml",this);
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public Coauthors[] getCoauthors(String[] auth){
+		authors = get_authors(auth);
+		coauthors = parser.start_parsing(authors);
+		Coauthors[] results = coauthors_beans(authors,coauthors);
+		return results;
+	}
+	
+	private Coauthors[] coauthors_beans(ArrayList<String> auth,HashSet<String>[] coauth){
+		Coauthors[] res = new Coauthors[auth.size()];
+		for (int i = 0; i < auth.size(); i++){
+			res[i] = new Coauthors();
+			res[i].setAuthor(auth.get(i));
+			res[i].setCoauthors(convert_string(coauth[i]));
 		}
-		String[] res=new String[coauth.size()];
-		Iterator<String> i=coauth.iterator();
-		int k =0;
+		return res;
+	}
+	
+	private String[] convert_string(HashSet<String> hash){
+		String[] res = new String[hash.size()];
+		Iterator<String> i = hash.iterator();
+		int count = 0;
 		while (i.hasNext()){
-			res[k]=i.next();
-			k++;
+			res[count] = i.next();
+			count++;
 		}
 		return res;
 	}
 	
-	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException{
-		if(qName.compareTo("author")==0) auth=true;
-	}
 	
-	public void endElement(String uri, String localName, String qName) throws SAXException{
-		if(qName.compareTo("author")==0){
-			if (tmpstr.compareToIgnoreCase(author)==0){
-				find=true;
-			}
-			else coauth_tmp.add(tmpstr);
-			tmpstr="";
-			auth=false;
+	private ArrayList<String> get_authors(String[] auth){
+		ArrayList<String> res = new ArrayList<String>(auth.length);
+		for (int i = 0; i < auth.length; i++){
+			res.add(auth[i]);
 		}
-
-		else if(fields.contains(qName)){
-			if(find==true){
-				coauth.addAll(coauth_tmp);
-			}
-			find=false;
-			coauth_tmp.clear();
-			tmpstr="";
-		}
-	}
-	
-	public void characters(char[] ch, int start, int length) throws SAXException {
-		if (auth) {
-			tmpstr=new String(ch,start,length);
-		}
-	}
-	
-	
-	private ArrayList<String> generateFields(){
-		ArrayList<String> res=new ArrayList<String>();
-		res.add("article");
-		res.add("inproceedings");
-		res.add("proceedings");
-		res.add("book");
-		res.add("incollection");
-		res.add("phdthesis");
-		res.add("masterthesis");
-		res.add("www");
 		return res;
+	}
+		
+	public static void main(String[] args){
+		DblpAnalyzer a = new DblpAnalyzer("/home/enry/dblp.xml");
+		Coauthors[] res;
+		String[] input = new String[2];
+		input[0] = "Fabio Casati";
+		input[1] = "Maurizio Marchese";
+		res=a.getCoauthors(input);
+		for (int i = 0; i < input.length; i++){
+			System.out.println("#######"+input[i]);
+			String[] coauth = res[i].getCoauthors();
+			for (int k = 0; k < coauth.length; k++){
+				System.out.println(coauth[k]);
+			}
+		}
 	}
 }
