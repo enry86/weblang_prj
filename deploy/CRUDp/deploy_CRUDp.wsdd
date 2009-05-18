@@ -1,0 +1,10 @@
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" 
+xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="CRUDPerson" provider="java:RPC">
+		<parameter name="className" value="weblanguages.project2.CRUDpers.PersonOperation"/>
+		<parameter name="allowedMethods" value="*"/>
+		<parameter name="axis.xmlEncoding" value="UTF-16"/>
+		<beanMapping qname="ns1:Person" xmlns:ns1="urn:CRUDPerson" languageSpecificType="java:weblanguages.project2.CRUDpers.Person"/>
+		<beanMapping qname="ns1:PersonLabel" xmlns:ns1="urn:CRUDPerson" languageSpecificType="java:weblanguages.project2.CRUDpers.PersonLabel"/>
+	</service>
+</deployment>
