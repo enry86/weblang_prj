@@ -1,9 +1,9 @@
 package weblanguages.project.eval;
 
 public class GroupEval {
-	public double getAuthorsRank(String[] authors){
-		double res=1.0;
-		
+	public EvalBean getAuthorsRank(String[] authors){
+		Evaluator eval = new Evaluator(authors);
+		EvalBean res = eval.get_evaluation();
 		return res;
 	}
 }

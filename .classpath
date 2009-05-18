@@ -19,5 +19,7 @@
 	<classpathentry kind="lib" path="/var/lib/tomcat5.5/webapps/axis/WEB-INF/lib/tools.jar"/>
 	<classpathentry kind="lib" path="/var/lib/tomcat5.5/webapps/axis/WEB-INF/lib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="/var/lib/tomcat5.5/webapps/axis/WEB-INF/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/CRUDPerson/dist/CRUDPersonStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/CRUDGroup/dist/CRUDGroupStub.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
