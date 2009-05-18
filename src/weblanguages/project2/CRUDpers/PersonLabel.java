@@ -1,9 +1,24 @@
 package weblanguages.project2.CRUDpers;
 
+/**
+ * This JavaBean represents the fields in the person_label table in the
+ * database.
+ * Is implemented as a Bean in order to easily send it via SOAP using
+ * the Axis beanmapping feature.
+ * @author enry
+ *
+ */
 public class PersonLabel {
 	public PersonLabel(){}
 	
+	/**
+	 * Unique identifier for a person
+	 */
 	private int id_user;
+	
+	/**
+	 * Unique identifier for a label
+	 */
 	private int id_label;
 	
 	public int getId_user() {

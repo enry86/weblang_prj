@@ -1,9 +1,22 @@
 package weblanguages.project2.CRUDgroup;
 
+/**
+ * This JavaBean represents a record in the group_label table in the 
+ * database
+ * @author enry
+ *
+ */
 public class GroupLabel {
 	public GroupLabel(){}
 	
+	/**
+	 * unique id of the group
+	 */
 	private int id_group;
+	
+	/**
+	 * unique in of the label
+	 */
 	private int id_label;
 	
 	

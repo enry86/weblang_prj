@@ -1,10 +1,28 @@
 package weblanguages.project2.CRUDgroup;
 
+/**
+ * This class represents a group tuple in the database, is in the form of 
+ * JavaBean in order to be sent in SOAP messages through the Axis 
+ * beanmapping 
+ * @author enry
+ *
+ */
 public class Group {
 	public Group(){}
 	
+	/**
+	 * Group unique identifier
+	 */
 	private int id_group;
+	
+	/**
+	 * Name of the group
+	 */
 	private String group_name;
+	
+	/**
+	 * Uri of the group
+	 */
 	private String group_uri;
 	
 	

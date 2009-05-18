@@ -1,8 +1,26 @@
 package weblanguages.project2.searchlabels;
 
+/**
+ * This class represent a Label as in the database
+ * Is implemented as a Bean in order to easily send it via SOAP using
+ * the Axis beanmapping feature.
+ * @author enry
+ *
+ */
 public class Label {
+	/**
+	 * Unique identifier for the label
+	 */
 	private int id_label;
+	
+	/**
+	 * name of the label
+	 */
 	private String Label_name;
+	
+	/**
+	 * Value of the label
+	 */
 	private String label_value;
 	
 	public Label(){}

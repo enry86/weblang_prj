@@ -1,9 +1,34 @@
 package weblanguages.project2.searchlabels;
 
+/**
+ * This class represent the common information shared between the different
+ * entities in the database.
+ * The informations provided make possible to query the specific table
+ * and retrieve additional informations 
+ * Is implemented as a Bean in order to easily send it via SOAP using
+ * the Axis beanmapping feature.
+ * @author enry
+ *
+ */
 public class Item {
+	/**
+	 * Unique id of the item in its table
+	 */
 	private int id_item;
+	
+	/**
+	 * category of the item (person, group...)
+	 */
 	private String item_type;
+	
+	/**
+	 * Name of the item
+	 */
 	private String item_name;
+	
+	/**
+	 * Uri of the item
+	 */
 	private String item_uri;
 	
 	public Item(){}
