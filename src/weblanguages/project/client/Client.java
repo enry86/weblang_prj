@@ -2,8 +2,12 @@ package weblanguages.project.client;
 
 import java.rmi.RemoteException;
 import javax.xml.rpc.ServiceException;
+
+import Eval.EvalBean;
 import coauthors.stub.*;
 import groupeval.stub.*;
+
+import sartorienrico.CRUDPerson.stub.*;
 
 public class Client {
 	GroupEval stub_e;
@@ -12,27 +16,56 @@ public class Client {
 	DblpCoauthors stub_d;
 	DblpCoauthorsService serv_d;
 	
+	PersonOperation stub_cp;
+	PersonOperationService serv_cp;
+	
 	
 	public Client(){
-		//test_eval();
-		test_coau();
+		test_eval();
+		//test_coau();
+		//test_cp();	
 	}
 	
 	private void test_eval(){
-		double res=0;
-		String[] strs=new String[2];
-		strs[0]="ciao";
-		strs[1]="miao";
+		EvalBean res;
+		String[] input = new String[6];
+		input[0] = "Fabio Casati";
+		input[1] = "Maurizio Marchese";
+		input[2] = "Themis Palpanas";
+		input[3] = "Florian Daniel";
+		input[4] = "Fausto Giunchiglia";
+		input[5] = "Yannis Velegrakis";
+		
 		serv_e=new GroupEvalServiceLocator();
 		try {
 			stub_e=serv_e.getGroupEval();
-			res = stub_e.getAuthorsRank(strs);
+			res = stub_e.getAuthorsRank(input);
+			
+			
+			System.out.println(res.getH_index());
+			System.out.println(res.getH_max());
+			System.out.println(res.getH_min());
+			
+			System.out.println(res.getG_index());
+			System.out.println(res.getG_max());
+			System.out.println(res.getG_min());		
+			
+			System.out.println(res.getCit_avg());
+			System.out.println(res.getCit_max());
+			System.out.println(res.getCit_min());
+			
+			System.out.println(res.getPub_count());
+			System.out.println(res.getPub_max());
+			System.out.println(res.getPub_min());
+			
+			System.out.println(res.getNot_found().length);
+			
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		System.out.println(res);
+		
 	}
 	
 	private void test_coau(){
@@ -62,6 +95,21 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
+	
+	public void test_cp(){
+		Person p = new Person();
+		p.setFirst_name("This is a test");
+		serv_cp = new PersonOperationServiceLocator();
+		try {
+			stub_cp = serv_cp.getCRUDPerson();
+			System.out.println(stub_cp.deletePerson(p));			
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void main(String[] args){
 		new Client();

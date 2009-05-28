@@ -3,5 +3,6 @@ xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 	<service name="GroupEval" provider="java:RPC">
 		<parameter name="className" value="weblanguages.project.eval.GroupEval"/>
 		<parameter name="allowedMethods" value="*"/>
+		<beanMapping qname="ns1:EvalBean" xmlns:ns1="urn:Eval" languageSpecificType="java:weblanguages.project.eval.EvalBean"/>
 	</service>
 </deployment>
