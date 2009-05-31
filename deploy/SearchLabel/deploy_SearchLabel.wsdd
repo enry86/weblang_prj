@@ -1,10 +1,10 @@
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" 
 xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
-	<service name="SearchLabel" provider="java:RPC">
-		<parameter name="className" value="weblanguages.project2.searchlabels.SearchLabel"/>
+	<service name="SartoriWLC_SearchLabel" provider="java:RPC">
+		<parameter name="className" value="sartoriWLC.project2.searchlabels.SearchLabel"/>
 		<parameter name="allowedMethods" value="*"/>
 		<parameter name="axis.xmlEncoding" value="UTF-16"/>
-		<beanMapping qname="ns1:Item" xmlns:ns1="urn:SearchLabel" languageSpecificType="java:weblanguages.project2.searchlabels.Item"/>
-		<beanMapping qname="ns1:Label" xmlns:ns1="urn:SearchLabel" languageSpecificType="java:weblanguages.project2.searchlabels.Label"/>
+		<beanMapping qname="ns1:Item" xmlns:ns1="urn:SearchLabel" languageSpecificType="java:sartoriWLC.project2.searchlabels.Item"/>
+		<beanMapping qname="ns1:Label" xmlns:ns1="urn:SearchLabel" languageSpecificType="java:sartoriWLC.project2.searchlabels.Label"/>
 	</service>
 </deployment>

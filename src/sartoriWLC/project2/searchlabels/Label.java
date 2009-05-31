@@ -1,4 +1,4 @@
-package weblanguages.project2.searchlabels;
+package sartoriWLC.project2.searchlabels;
 
 /**
  * This class represent a Label as in the database

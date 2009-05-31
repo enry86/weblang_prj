@@ -1,4 +1,4 @@
-package weblanguages.project2.groupmetrics;
+package sartoriWLC.project2.groupmetrics;
 
 /**
  * This class provides support for computing and reporting a scientific metric
@@ -16,7 +16,9 @@ public class GroupMetric {
 	 * the computed metric
 	 */
 	public GMetric getGroupMetric(int id_group, int id_metric){
-		return new GMetric();
+		GMetric gm = new GMetric();
+		gm.setMetric_name("Prova");
+		return gm;
 	}
 	
 }

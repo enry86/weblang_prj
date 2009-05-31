@@ -1,4 +1,4 @@
-package weblanguages.project2.CRUDgroup;
+package sartoriWLC.project2.CRUDgroup;
 
 /**
  * This class represents a group tuple in the database, is in the form of 

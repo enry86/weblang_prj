@@ -13,8 +13,8 @@
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/DblpCoauthors/dist/DblpCoauthorsStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/GroupEval/dist/GroupEvalStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/CRUDPerson/dist/CRUDPersonStub.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/CRUDGroup/dist/CRUDGroupStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/GroupMetrics/dist/GroupMetricsStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SearchLabel/dist/SearchLabelStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_CRUDGroup/dist/SartoriWLC_CRUDGroupStub.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,10 +1,11 @@
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" 
 xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
-	<service name="CRUDGroup" provider="java:RPC">
-		<parameter name="className" value="weblanguages.project2.CRUDgroup.GroupOperation"/>
+	<service name="SartoriWLC_CRUDGroup" provider="java:RPC">
+		<parameter name="wsdlTargetNamespace" value="http://sartoriWLC.wl.cg.it/"/>
+		<parameter name="className" value="sartoriWLC.project2.CRUDgroup.GroupOperation"/>
 		<parameter name="allowedMethods" value="*"/>
 		<parameter name="axis.xmlEncoding" value="UTF-16"/>
-		<beanMapping qname="ns1:Group" xmlns:ns1="urn:CRUDGroup" languageSpecificType="java:weblanguages.project2.CRUDgroup.Group"/>
-		<beanMapping qname="ns1:GroupLabel" xmlns:ns1="urn:CRUDGroup" languageSpecificType="java:weblanguages.project2.CRUDgroup.GroupLabel"/>
+		<beanMapping qname="ns1:Group" xmlns:ns1="http://sartoriWLC.wl.it/CRUDGroup" languageSpecificType="java:sartoriWLC.project2.CRUDgroup.Group"/>
+		<beanMapping qname="ns1:GroupLabel" xmlns:ns1="http://sartoriWLC.wl.it/CRUDGroup" languageSpecificType="java:sartoriWLC.project2.CRUDgroup.GroupLabel"/>
 	</service>
 </deployment>

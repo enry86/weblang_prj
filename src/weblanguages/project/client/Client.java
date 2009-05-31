@@ -8,6 +8,7 @@ import coauthors.stub.*;
 import groupeval.stub.*;
 
 import sartorienrico.CRUDPerson.stub.*;
+import sartorienrico.CRUDGroup.stub.*;
 
 public class Client {
 	GroupEval stub_e;
@@ -19,11 +20,14 @@ public class Client {
 	PersonOperation stub_cp;
 	PersonOperationService serv_cp;
 	
+	GroupOperation stub_cg;
+	GroupOperationService serv_cg;
 	
 	public Client(){
-		test_eval();
+		//test_eval();
 		//test_coau();
-		//test_cp();	
+		//test_cp();
+		test_cg();
 	}
 	
 	private void test_eval(){
@@ -110,6 +114,19 @@ public class Client {
 		}
 	}
 	
+	public void test_cg(){
+		Group g = new Group();
+		g.setId_group(0);
+		serv_cg = new GroupOperationServiceLocator();
+		try {
+			stub_cg = serv_cg.getSartoriWLC_CRUDGroup();
+			System.out.println(stub_cg.readGroup(g)[0].getGroup_name());
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public static void main(String[] args){
 		new Client();

@@ -1,4 +1,4 @@
-package weblanguages.project2.groupmetrics;
+package sartoriWLC.project2.groupmetrics;
 
 /**
  * This bean summarizes the computed metric for a group of authors

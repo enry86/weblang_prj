@@ -1,4 +1,4 @@
-package weblanguages.project2.CRUDpers;
+package sartoriWLC.project2.CRUDpers;
 
 /**
  * This JavaBean represents the fields in the person_label table in the

@@ -1,4 +1,4 @@
-package weblanguages.project2.CRUDgroup;
+package sartoriWLC.project2.CRUDgroup;
 
 /**
  * This class performes CRUD operations for the group and group_label tables
@@ -25,7 +25,12 @@ public class GroupOperation {
 	 * @return an array of groups satisfying the search criteria 
 	 */
 	public Group[] readGroup(Group group){
-		return new Group[1];
+		Group g = new Group();
+		Group[] res = {g};
+		g.setGroup_name("Prova");
+		g.setGroup_uri("http://prova.pr");
+		g.setId_group(0);
+		return res;
 	}
 	
 	/**
@@ -65,7 +70,11 @@ public class GroupOperation {
 	 * @return array of GroupLabel beans satisfying the search criteria
 	 */
 	public GroupLabel[] readGroupLabel(GroupLabel group_label){
-		return new GroupLabel[1];
+		GroupLabel gl = new GroupLabel();
+		GroupLabel[] res = {gl};
+		gl.setId_group(0);
+		gl.setId_label(1);
+		return res;
 	}
 	
 	/**

@@ -1,3 +1,3 @@
 <undeployment xmlns="http://xml.apache.org/axis/wsdd/">
-	<service name="SearchLabel"/>
+	<service name="SartoriWLC_SearchLabel"/>
 </undeployment>

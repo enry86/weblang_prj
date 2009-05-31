@@ -1,4 +1,4 @@
-package weblanguages.project2.CRUDpers;
+package sartoriWLC.project2.CRUDpers;
 
 
 /**
@@ -25,7 +25,10 @@ public class PersonOperation {
 	 * @return an array of Person beans satisfying the search criteria 
 	 */
 	public Person[] readPerson(Person person){
-		return new Person[1];
+		Person p = new Person();
+		Person[] res = {p};
+		p.setFirst_name("Prova");
+		return res;
 	}
 	
 	/**
@@ -53,7 +56,7 @@ public class PersonOperation {
 	/**
 	 * Creates a new person_label entry
 	 * @param pers_label bean containing the values for the new record
-	 * @return sucess or failure of the operation
+	 * @return success or failure of the operation
 	 */
 	public boolean createPersonLabel(PersonLabel pers_label){
 		return true;
@@ -65,7 +68,11 @@ public class PersonOperation {
 	 * @return array of PersonLabel beans satisfying the search criteria
 	 */
 	public PersonLabel[] readPersonLabel(PersonLabel pers_label){
-		return new PersonLabel[1];
+		PersonLabel pl = new PersonLabel();
+		PersonLabel[] res = {pl};
+		pl.setId_label(0);
+		pl.setId_user(1);
+		return res;
 	}
 	
 	/**

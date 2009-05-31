@@ -1,4 +1,4 @@
-package weblanguages.project2.CRUDgroup;
+package sartoriWLC.project2.CRUDgroup;
 
 /**
  * This JavaBean represents a record in the group_label table in the 

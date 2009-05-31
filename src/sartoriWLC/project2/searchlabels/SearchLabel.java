@@ -1,4 +1,4 @@
-package weblanguages.project2.searchlabels;
+package sartoriWLC.project2.searchlabels;
 
 /**
  * This class performs queries over the various tables of the 
@@ -14,7 +14,10 @@ public class SearchLabel {
 	 * @return an array of Item beans satisfying the search criteria
 	 */
 	public Item[] searchLabel(Label match_label){
-		return new Item[1];
+		Item i = new Item();
+		Item[] res = {i};
+		i.setId_item(0);
+		return res;
 	}
 	
 	/**
@@ -24,7 +27,10 @@ public class SearchLabel {
 	 * @return array of Item beans satisfying the search criteria
 	 */
 	public Item[] searchAnyLabel(Label[] match_labels){
-		return new Item[1];
+		Item i = new Item();
+		Item[] res = {i};
+		i.setId_item(0);
+		return res;
 	}
 	
 	/**
@@ -34,6 +40,9 @@ public class SearchLabel {
 	 * @return array of Item beans satisfying the search criteria
 	 */
 	public Item[] searchAllLabel(Label[] match_labels){
-		return new Item[1];
+		Item i = new Item();
+		Item[] res = {i};
+		i.setId_item(0);
+		return res;
 	}	
 }

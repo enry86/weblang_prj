@@ -1,9 +1,9 @@
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" 
 xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
-	<service name="GroupMetric" provider="java:RPC">
-		<parameter name="className" value="weblanguages.project2.groupmetrics.GroupMetric"/>
+	<service name="SartoriWLC_GroupMetric" provider="java:RPC">
+		<parameter name="className" value="sartoriWLC.project2.groupmetrics.GroupMetric"/>
 		<parameter name="allowedMethods" value="*"/>
 		<parameter name="axis.xmlEncoding" value="UTF-16"/>
-		<beanMapping qname="ns1:GMetric" xmlns:ns1="urn:GroupMetric" languageSpecificType="java:weblanguages.project2.groupmetrics.GMetric"/>
+		<beanMapping qname="ns1:GMetric" xmlns:ns1="urn:GroupMetric" languageSpecificType="java:sartoriWLC.project2.groupmetrics.GMetric"/>
 	</service>
 </deployment>
