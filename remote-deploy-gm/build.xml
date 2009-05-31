@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="RemoteDeploy" default="init" basedir="..">
+
+	<!-- 
+    ======================
+    INITIALIZATION SECTION 
+    ======================
+    -->
+
+	<target name="init">
+		<property file="remote-deploy-gm/service.properties" />
+	    <property file="remote-deploy-gm/server-side/server.properties" />
+	</target>
+	
+    <!--	
+		================== 
+		ENTER CREDENTIALS
+		==================
+		-->
+		    
+		<target name="login">
+		    	
+		    <!-- Enter username and password -->
+		  
+		    <input
+		     message="Please enter your username:"
+		     addproperty="username"
+		     />
+		    	
+		    <input
+		      message="Please enter your password:"
+		      addproperty="password"
+		    />
+		    	
+			</target>	
+		
+	<!--
+		 ===========================================
+		  CREATE TAR FILE
+		 ===========================================
+	-->
+
+	<target name="create-tar-file" depends="init">
+
+	   <mkdir dir="${service.name}" />
+	   <mkdir dir="${service.name}/${classes.dir}" />
+	   <mkdir dir="${service.name}/${lib.dir}" />
+	   <mkdir dir="${service.name}/${wsdd.dir}" />
+	   
+	   <copy todir="${service.name}/${classes.dir}">
+		 <fileset dir="${classes.dir}"/>
+	   </copy>
+	   
+		<copy todir="${service.name}/${lib.dir}">
+		 <fileset dir="${lib.dir}"/>
+	   </copy>
+	   
+		<copy todir="${service.name}/${wsdd.dir}">
+		 <fileset dir="${wsdd.dir}"/>
+	   </copy>
+	   
+		<copy file="remote-deploy-gm/service.properties" todir="${service.name}"/>
+	   
+		<copy todir="${service.name}">
+				 <fileset dir="remote-deploy-gm/server-side"/>
+		</copy>
+			   
+		<tar destfile="${tar.file}">
+	      <tarfileset dir="${service.name}"
+            prefix="${service.name}">
+	      </tarfileset>
+	    </tar>
+		
+	    <delete dir="${service.name}"/>
+		
+	    <gzip destfile="${tar.file}.gz" src="${tar.file}"/>
+		
+	    <delete file="${tar.file}"/>
+	 		
+	</target>
+	
+
+	<!--
+	 ===========================================
+	  COPY LOCAL DIRECTORIES INTO REMOTE SERVER
+	 ===========================================
+	-->
+	
+    <!-- Copy local tar file ${tar.file} into remote server (demo.liquidpub.org) -->
+
+	<target name="copy-tar-file" depends="init,create-tar-file">
+	
+	 <echo message="Copying local tar  file ${tar.file} into remote server..."/>
+
+	 <scp file="${tar.file}.gz" todir="${username}@${ip}:${remote.root.dir}" password="${password}" port="${port}"	
+		trust="yes" >
+	 </scp>
+		
+	<delete file="${tar.file}.gz"/>
+			
+	</target>
+	
+
+    <!-- Extraxt tar file into remote server (demo.liquidpub.org) -->
+	
+	<target name="remote-untar" depends="init,login">
+   	
+    	<!-- Eventually remove the remote directory "service.name" -->
+			
+	    <echo message="Eventually remove ${remote.root.dir}/${service.name}"/>
+				
+		<sshexec host="${ip}"
+				  username="${username}"
+				  password="${password}"
+				  port="${port}"	
+				  trust="true"
+				  command="[ -d ${remote.root.dir}/${service.name} ] &amp;&amp; rm -r ${remote.root.dir}/${service.name} || echo 'won't remove directory ${service.name}: it doesn't exist' " />
+
+		<!-- Untar the tar.gz file -->
+
+	    <echo message="Untar ${tar.file} file under ${remote.root.dir} directory of remote server 193.205.194.4..."/>
+
+		<sshexec host="${ip}"
+		 username="${username}"
+		 password="${password}"
+		 port="${port}"	
+		 trust="true"
+ 		 command=" tar xzvf ${remote.root.dir}/${tar.file}.gz -C ${remote.root.dir}" />
+		
+	   <!-- Remove tar.gz file on remote server  -->
+					
+		<echo message="Remove ${remote.root.dir}/${tar.file}.gz "/>
+						
+		<sshexec host="${ip}"
+		 username="${username}"
+		 password="${password}"
+		 port="${port}"	
+		 trust="true"
+		 command="rm -r ${remote.root.dir}/${tar.file}.gz" />
+		
+    </target>
+		
+	<!-- Copy local directories "classes", "lib", "deployment" into remote server (demo.liquidpub.org) -->
+
+    <target name="remote-copy" 
+    	depends="login,copy-tar-file,remote-untar">
+	</target>
+
+
+	<!--
+    ===============
+    DEPLOYMENT SECTION
+    ===============
+    -->
+	
+	 <!-- Deploy the service remotely  -->
+
+	<target name="remote-deploy" depends="init,login,remote-copy">
+	
+     <echo message="Deploy the service remotely"/>
+     <echo message="Command: ant -buildfile ${remote.root.dir}/${service.name}/deploy.xml deploy" />
+     <sshexec host="${ip}"
+		username="${username}"
+		password="${password}"
+		port="${port}"	
+		trust="true"
+		command="ant -buildfile ${remote.root.dir}/${service.name}/deploy.xml deploy" />
+
+	</target>
+
+	 <!-- Undeploy the service remotely  -->
+	 <!-- It is assumed you have the directory ${remote.root.dir}/'service.name' on remote server  --> 
+	
+    <target name="remote-undeploy" depends="init,login">
+
+	   <echo message="Undeploy the service remotely"/>
+	   <echo message="Command: ant -buildfile ${remote.root.dir}/${service.name}/deploy.xml undeploy" />
+	   <sshexec host="${ip}"
+			username="${username}"
+			password="${password}"
+			port="${port}"	
+			trust="true"
+			command="ant -buildfile ${remote.root.dir}/${service.name}/deploy.xml undeploy" />
+	</target>
+</project>
