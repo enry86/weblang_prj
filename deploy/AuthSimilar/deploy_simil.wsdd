@@ -1,0 +1,9 @@
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" 
+xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="AuthSimilarity" provider="java:RPC">
+		<parameter name="className" value="weblanguages.project.similar.AuthSimilar"/>
+		<parameter name="allowedMethods" value="*"/>
+		<parameter name="axis.xmlEncoding" value="UTF-16"/>
+		<beanMapping qname="ns1:SimilarBean" xmlns:ns1="http://127.0.0.1:8080/axis/services/AuthSimilarity" languageSpecificType="java:weblanguages.project.similar.SimilarBean"/>
+	</service>
+</deployment>

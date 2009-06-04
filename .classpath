@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/GroupMetrics/dist/GroupMetricsStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SearchLabel/dist/SearchLabelStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_CRUDGroup/dist/SartoriWLC_CRUDGroupStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/AuthSimilarity/dist/AuthSimilarityStub.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

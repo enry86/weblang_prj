@@ -4,8 +4,10 @@ import java.rmi.RemoteException;
 import javax.xml.rpc.ServiceException;
 
 import Eval.EvalBean;
+
 import coauthors.stub.*;
 import groupeval.stub.*;
+import similar.stub.*;
 
 import sartorienrico.CRUDPerson.stub.*;
 import sartorienrico.CRUDGroup.stub.*;
@@ -23,11 +25,15 @@ public class Client {
 	GroupOperation stub_cg;
 	GroupOperationService serv_cg;
 	
+	AuthSimilar stub_sim;
+	AuthSimilarService serv_sim;
+	
 	public Client(){
 		//test_eval();
 		//test_coau();
 		//test_cp();
-		test_cg();
+		//test_cg();
+		test_sim();
 	}
 	
 	private void test_eval(){
@@ -126,6 +132,22 @@ public class Client {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void test_sim(){
+		SimilarBean r;
+		serv_sim = new AuthSimilarServiceLocator();
+		try {
+			stub_sim = serv_sim.getAuthSimilarity();
+			r = stub_sim.get_similarity("prova", "prova");
+			System.out.println(r.getAb_similarity());
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+			
+		
 	}
 	
 	public static void main(String[] args){
