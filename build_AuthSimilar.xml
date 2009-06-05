@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="GMetrics" default="init" basedir=".">
+<project name="AuthSimilar" default="init" basedir=".">
 
 	<!-- 
     ======================
@@ -9,8 +9,8 @@
     -->
 
 	<target name="init">
-		<property file="properties/GMetrics/build_GMetrics.properties" />
-		<property file="properties/GMetrics/project_GMetrics.properties" />
+		<property file="properties/AuthSimilar/build_AuthSimilar.properties" />
+		<property file="properties/AuthSimilar/project_AuthSimilar.properties" />
 		
 		<echo message="ANT HOME: ${ant.home}"/>
                 <echo message=""/>
@@ -95,7 +95,7 @@
 		<axis-wsdl2java output="${src.stub}" testcase="false"   verbose="true" url="${local.wsdl}">
 			 <mapping
 			 	namespace= "http://${target.server}:${target.port}/${target.appname}/services/${service.name}"
-				package="sartorienrico.GMetrics.stub" />
+				package="similar.stub" />
 		</axis-wsdl2java>
 		
 	</target>
@@ -113,18 +113,17 @@
     ===============
     -->
 	<target name="clean" depends="init" description="Clean build products.">
-		<delete dir="${build.service.local}/sartoriWLC/project2/groupmetrics" />
+		<delete dir="${build.service.local}/weblanguages/project/similar" />
 		<delete dir="${build.test}" />
 		<delete dir="${build.stub}" />
 		<delete dir="${dist.service}" />
 		<delete dir="${dist.stub}" />
-
 	</target>
-
+	
 	<target name="clean-src-stub" depends="init" description="Clean src stub.">
 		<delete dir="${src.stub}" />
-	</target>	
-
+	</target>
+	
 	<!--
 	    ===============
 	    JAVA2WSDL SECTION

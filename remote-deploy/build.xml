@@ -11,7 +11,7 @@
 	<target name="init">
 		<property file="remote-deploy/${rdserv.name}/service.properties" />
 	    <property file="remote-deploy/server-side/server.properties" />
-	</target>
+    </target>
 	
     <!--	
 		================== 

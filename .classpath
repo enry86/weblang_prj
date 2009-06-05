@@ -10,12 +10,12 @@
 	<classpathentry kind="lib" path="/opt/tomcat/webapps/axis/WEB-INF/lib/log4j-1.2.8.jar"/>
 	<classpathentry kind="lib" path="/opt/tomcat/webapps/axis/WEB-INF/lib/saaj.jar"/>
 	<classpathentry kind="lib" path="/opt/tomcat/webapps/axis/WEB-INF/lib/wsdl4j-1.5.1.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/DblpCoauthors/dist/DblpCoauthorsStub.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/GroupEval/dist/GroupEvalStub.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/CRUDPerson/dist/CRUDPersonStub.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/GroupMetrics/dist/GroupMetricsStub.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SearchLabel/dist/SearchLabelStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_CRUDPerson/dist/SartoriWLC_CRUDPersonStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_GroupMetrics/dist/SartoriWLC_GroupMetricsStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_SearchLabel/dist/SartoriWLC_SearchLabelStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_CRUDGroup/dist/SartoriWLC_CRUDGroupStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/AuthSimilarity/dist/AuthSimilarityStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/DblpCoauthors/dist/DblpCoauthorsStub.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/GroupEval/dist/GroupEvalStub.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

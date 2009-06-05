@@ -3,14 +3,12 @@ package weblanguages.project.client;
 import java.rmi.RemoteException;
 import javax.xml.rpc.ServiceException;
 
-import Eval.EvalBean;
-
 import coauthors.stub.*;
 import groupeval.stub.*;
 import similar.stub.*;
 
-import sartorienrico.CRUDPerson.stub.*;
 import it.cg.wl.sartoriWLC.*;
+import it.cp.wl.sartoriWLC.*;
 
 
 public class Client {
@@ -112,7 +110,7 @@ public class Client {
 		p.setFirst_name("This is a test");
 		serv_cp = new PersonOperationServiceLocator();
 		try {
-			stub_cp = serv_cp.getCRUDPerson();
+			stub_cp = serv_cp.getSartoriWLC_CRUDPerson();
 			System.out.println(stub_cp.deletePerson(p));			
 		} catch (ServiceException e) {
 			e.printStackTrace();
