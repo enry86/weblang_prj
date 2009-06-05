@@ -10,7 +10,8 @@ import groupeval.stub.*;
 import similar.stub.*;
 
 import sartorienrico.CRUDPerson.stub.*;
-import sartorienrico.CRUDGroup.stub.*;
+import it.cg.wl.sartoriWLC.*;
+
 
 public class Client {
 	GroupEval stub_e;
@@ -32,8 +33,8 @@ public class Client {
 		//test_eval();
 		//test_coau();
 		//test_cp();
-		//test_cg();
-		test_sim();
+		test_cg();
+		//test_sim();
 	}
 	
 	private void test_eval(){

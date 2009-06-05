@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Deploy/Undeploy" default="init" basedir=".">
+
+	<!-- 
+    ======================
+    INITIALIZATION SECTION 
+    ======================
+    -->
+
+	<target name="init">
+		<property file="server.properties" />
+		<property file="service.properties" />
+		
+		<echo message="ANT HOME: ${ant.home}"/>
+                <echo message=""/>
+		<echo message="AXIS CLASSPATH: ${libs.AxisLibrary.classpath}"/>
+                <echo message=""/>
+                <echo message="In caso di errore verificare che in ANT HOME non ci sia axis-ant.jar"/>
+		<taskdef resource="axis-tasks.properties" classpath="${libs.AxisLibrary.classpath}" />
+
+	</target>
+
+  <!-- 
+    ======================================
+    CHANGE FILES OWNERSHIP AND PERMISSIONS
+    ======================================
+    -->
+    
+  <target name="change-ownership">
+    
+  <echo message="Change permissions in ${classes.Axis}"/>
+    	
+  
+  <exec executable="chmod" os="Linux">
+   <arg line=" -R 777 ${classes.Axis}"/>
+  </exec>
+
+  <echo message="Change permissions in ${lib.Axis}"/>
+  
+  	<exec executable="chmod" os="Linux">
+  	   <arg line=" -R 777 ${lib.Axis}"/>
+    </exec>
+
+  
+  </target>   
+
+  <!-- 
+    ===============================
+    COPY CLASSES AND LIBS TO AXIS
+    ===============================
+    -->
+    
+    <target name="copy-files-to-axis">
+	
+    <echo message="Copy directory ${classes.dir} into directory ${classes.Axis}"/>
+
+    <copy todir="${classes.Axis}">
+      <fileset dir="${classes.dir}"/>
+    </copy>
+	
+    <echo message="Copy directory ${lib.dir} into directory ${lib.Axis}"/>
+
+	<copy todir="${lib.Axis}">
+      <fileset dir="${lib.dir}"/>
+    </copy>
+	
+	</target>
+    
+    <!--
+    ===============
+    DEPLOYMENT SECTION
+    ===============
+    -->
+	<target name="deploy" depends="undeploy,copy-files-to-axis,change-ownership">
+		<axis-admin port="${target.port}" hostname="${target.server}" failonerror="true" servletpath="${target.appname}/services/AdminService" debug="true" xmlfile="${deployment.wsdd}" />
+	</target>
+
+	<target name="undeploy" depends="init">
+		<axis-admin port="${target.port}" hostname="${target.server}" failonerror="true" servletpath="${target.appname}/services/AdminService" debug="true" xmlfile="${undeployment.wsdd}" />
+		<echo> delete ${classes.Axis}/${service.main.package} </echo>
+		<delete dir="${classes.Axis}/${service.main.package}" />
+	</target>
+
+</project>
+
+
+
+
+

@@ -1,9 +1,10 @@
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" 
 xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 	<service name="SartoriWLC_GroupMetric" provider="java:RPC">
+		<parameter name="wsdlTargetNamespace" value="http://sartoriWLC.wl.gm.it/"/>	
 		<parameter name="className" value="sartoriWLC.project2.groupmetrics.GroupMetric"/>
 		<parameter name="allowedMethods" value="*"/>
 		<parameter name="axis.xmlEncoding" value="UTF-16"/>
-		<beanMapping qname="ns1:GMetric" xmlns:ns1="urn:GroupMetric" languageSpecificType="java:sartoriWLC.project2.groupmetrics.GMetric"/>
+		<beanMapping qname="ns1:GMetric" xmlns:ns1="http://sartoriWLC.wl.gm.it/" languageSpecificType="java:sartoriWLC.project2.groupmetrics.GMetric"/>
 	</service>
 </deployment>

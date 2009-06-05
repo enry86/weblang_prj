@@ -113,7 +113,7 @@
     ===============
     -->
 	<target name="clean" depends="init" description="Clean build products.">
-		<delete dir="${build.service.local}" />
+		<delete dir="${build.service.local}/sartoriWLC/project2/CRUDpers" />
 		<delete dir="${build.test}" />
 		<delete dir="${build.stub}" />
 		<delete dir="${dist.service}" />
@@ -121,6 +121,11 @@
 
 	</target>
 
+	
+	<target name="clean-src-stub" depends="init" description="Clean src stub.">
+		<delete dir="${src.stub}" />
+	</target>
+	
 	<!--
 	    ===============
 	    JAVA2WSDL SECTION

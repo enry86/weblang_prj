@@ -113,12 +113,16 @@
     ===============
     -->
 	<target name="clean" depends="init" description="Clean build products.">
-		<delete dir="${build.service.local}" />
+		<delete dir="${build.service.local}/sartoriWLC/project2/CRUDgroup" />
 		<delete dir="${build.test}" />
 		<delete dir="${build.stub}" />
 		<delete dir="${dist.service}" />
 		<delete dir="${dist.stub}" />
 
+	</target>
+	
+	<target name="clean-src-stub" depends="init" description="Clean src stub.">
+		<delete dir="${src.stub}" />
 	</target>
 
 	<!--

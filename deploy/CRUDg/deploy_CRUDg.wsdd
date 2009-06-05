@@ -5,7 +5,7 @@ xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 		<parameter name="className" value="sartoriWLC.project2.CRUDgroup.GroupOperation"/>
 		<parameter name="allowedMethods" value="*"/>
 		<parameter name="axis.xmlEncoding" value="UTF-16"/>
-		<beanMapping qname="ns1:Group" xmlns:ns1="http://sartoriWLC.wl.it/CRUDGroup" languageSpecificType="java:sartoriWLC.project2.CRUDgroup.Group"/>
-		<beanMapping qname="ns1:GroupLabel" xmlns:ns1="http://sartoriWLC.wl.it/CRUDGroup" languageSpecificType="java:sartoriWLC.project2.CRUDgroup.GroupLabel"/>
+		<beanMapping qname="ns1:Group" xmlns:ns1="http://sartoriWLC.wl.cg.it" languageSpecificType="java:sartoriWLC.project2.CRUDgroup.Group"/>
+		<beanMapping qname="ns1:GroupLabel" xmlns:ns1="http://sartoriWLC.wl.cg.it" languageSpecificType="java:sartoriWLC.project2.CRUDgroup.GroupLabel"/>
 	</service>
 </deployment>
