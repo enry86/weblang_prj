@@ -29,9 +29,9 @@ public class Client {
 	
 	public Client(){
 		//test_eval();
-		//test_coau();
+		test_coau();
 		//test_cp();
-		test_cg();
+		//test_cg();
 		//test_sim();
 	}
 	
@@ -138,8 +138,10 @@ public class Client {
 		serv_sim = new AuthSimilarServiceLocator();
 		try {
 			stub_sim = serv_sim.getAuthSimilarity();
-			r = stub_sim.get_similarity("prova", "prova");
+			r = stub_sim.get_similarity("Fabio Casati", "Maurizio Marchese");
 			System.out.println(r.getAb_similarity());
+			System.out.println(r.getBa_similarity());
+			System.out.println(r.getGeneral_similarity());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
