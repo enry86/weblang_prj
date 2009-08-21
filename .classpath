@@ -14,7 +14,6 @@
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_GroupMetrics/dist/SartoriWLC_GroupMetricsStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_SearchLabel/dist/SartoriWLC_SearchLabelStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_CRUDGroup/dist/SartoriWLC_CRUDGroupStub.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/AuthSimilarity/dist/AuthSimilarityStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/DblpCoauthors/dist/DblpCoauthorsStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/GroupEval/dist/GroupEvalStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/lib/mysql-connector-java-5.1.8-bin.jar"/>
@@ -22,5 +21,6 @@
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/lib/serializer.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/lib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/AuthSimilarity/dist/AuthSimilarityStub.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

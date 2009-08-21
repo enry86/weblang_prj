@@ -29,9 +29,9 @@ public class Client {
 	
 	public Client(){
 		//test_eval();
-		test_coau();
+		//test_coau();
 		//test_cp();
-		//test_cg();
+		test_cg();
 		//test_sim();
 	}
 	
@@ -121,11 +121,13 @@ public class Client {
 	
 	public void test_cg(){
 		Group g = new Group();
-		g.setId_group(0);
+		Group g2 = new Group();
+		//g.setGroup_name("Science2");
+		//g2.setGroup_uri("http://lolololool.3");
 		serv_cg = new GroupOperationServiceLocator();
 		try {
 			stub_cg = serv_cg.getSartoriWLC_CRUDGroup();
-			System.out.println(stub_cg.readGroup(g)[0].getGroup_name());
+			System.out.println(stub_cg.deleteGroup(g));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

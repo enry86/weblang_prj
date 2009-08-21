@@ -2,6 +2,7 @@ package weblanguages.project.similar;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -23,10 +24,12 @@ public class SimilParser extends DefaultHandler {
 	private String res;
 	
 	private ArrayList<String> fields;
-	private boolean a = false;
-	private boolean b = false;
+	//private boolean a = false;
+	//private boolean b = false;
 	private boolean auth = false;
 	private boolean field = false;
+	
+	private HashSet<String> authors;
 	
 	private int c_a = 0;
 	private int c_ab = 0;
@@ -36,6 +39,7 @@ public class SimilParser extends DefaultHandler {
 		a_auth = a;
 		b_auth = b;
 		fields = generateFields();
+		authors = new HashSet<String>();
 		chars = new StringBuffer();
 		spf = SAXParserFactory.newInstance();
 		try {
@@ -68,19 +72,23 @@ public class SimilParser extends DefaultHandler {
 	}
 	
 	public void endElement(String uri, String localName, String qName) throws SAXException{
-		if (qName.compareTo("author") == 0 && field){
+		if (auth && field){
 			tmp = getChars();
-			if (tmp.compareTo(a_auth) == 0) a = true;
-			else if (tmp.compareTo(b_auth) == 0) b = true;
+			authors.add(tmp);
+			//if (tmp.compareTo(a_auth) == 0) a = true;
+			//else if (tmp.compareTo(b_auth) == 0) b = true;
 			auth = false;
 		}
-		else if (fields.contains(qName)){
+		else if (field){
+			boolean a = authors.contains(a_auth);
+			boolean b = authors.contains(b_auth);
 			if (a) c_a++;
 			if (b) c_b++;
 			if (a && b) c_ab++;
 			a = false;
 			b = false;
 			field = false;
+			authors.clear();
 		}
 	}
 	

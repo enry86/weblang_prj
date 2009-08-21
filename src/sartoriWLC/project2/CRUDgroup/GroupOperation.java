@@ -14,7 +14,8 @@ public class GroupOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean createGroup(Group group){
-		return true;
+		GroupDb db = new GroupDb();
+		return db.insert_group(group);
 	}
 	
 	/**
@@ -25,12 +26,8 @@ public class GroupOperation {
 	 * @return an array of groups satisfying the search criteria 
 	 */
 	public Group[] readGroup(Group group){
-		Group g = new Group();
-		Group[] res = {g};
-		g.setGroup_name("Prova");
-		g.setGroup_uri("http://prova.pr");
-		g.setId_group(0);
-		return res;
+		GroupDb db = new GroupDb();
+		return db.query_group(group);
 	}
 	
 	/**
@@ -42,7 +39,8 @@ public class GroupOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean updateGroup(Group match_group, Group upd_group){
-		return true;
+		GroupDb db = new GroupDb();
+		return db.update_group(match_group, upd_group);
 	}
 	
 	/**
@@ -51,7 +49,8 @@ public class GroupOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean deleteGroup(Group match_group){
-		return true;
+		GroupDb db = new GroupDb();
+		return db.delete_group(match_group);
 	}
 	
 	
@@ -60,7 +59,7 @@ public class GroupOperation {
 	 * @param group_label bean containing the values for the new record
 	 * @return sucess or failure of the operation
 	 */
-	public boolean createGroupLabel(GroupLabel group_label){
+	public static boolean createGroupLabel(GroupLabel group_label){
 		return true;
 	}
 	
