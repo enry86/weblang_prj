@@ -60,7 +60,8 @@ public class GroupOperation {
 	 * @return sucess or failure of the operation
 	 */
 	public static boolean createGroupLabel(GroupLabel group_label){
-		return true;
+		GroupLabelDb db = new GroupLabelDb();
+		return db.create_gl(group_label);
 	}
 	
 	/**
@@ -69,11 +70,8 @@ public class GroupOperation {
 	 * @return array of GroupLabel beans satisfying the search criteria
 	 */
 	public GroupLabel[] readGroupLabel(GroupLabel group_label){
-		GroupLabel gl = new GroupLabel();
-		GroupLabel[] res = {gl};
-		gl.setId_group(0);
-		gl.setId_label(1);
-		return res;
+		GroupLabelDb db = new GroupLabelDb();
+		return db.query_gl(group_label);
 	}
 	
 	/**
@@ -85,7 +83,8 @@ public class GroupOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean updateGroupLabel(GroupLabel match_group_label, GroupLabel upd_group_label){
-		return true;
+		GroupLabelDb db = new GroupLabelDb();
+		return db.update_gl(match_group_label, upd_group_label);
 	}
 	
 	/**
@@ -94,6 +93,7 @@ public class GroupOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean deleteGroupLabel(GroupLabel match_group_label){
-		return true;
+		GroupLabelDb db = new GroupLabelDb();
+		return db.delete_gl(match_group_label);
 	}
 }

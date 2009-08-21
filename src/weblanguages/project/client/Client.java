@@ -120,14 +120,19 @@ public class Client {
 	}
 	
 	public void test_cg(){
-		Group g = new Group();
-		Group g2 = new Group();
+		GroupLabel g = new GroupLabel();
+		GroupLabel g2 = new GroupLabel();
+		GroupLabel[] r;
+		g.setId_group(7);
+		g2.setId_label(3);
+		//g.setId_label(1);
 		//g.setGroup_name("Science2");
 		//g2.setGroup_uri("http://lolololool.3");
 		serv_cg = new GroupOperationServiceLocator();
 		try {
 			stub_cg = serv_cg.getSartoriWLC_CRUDGroup();
-			System.out.println(stub_cg.deleteGroup(g));
+			System.out.println(stub_cg.updateGroupLabel(g,g2));
+			
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

@@ -7,13 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
-public class GroupDb {
+public class GroupLabelDb {
 	private Connection con;
 	private Statement stm;
 	private ResultSet res_set;
 	
-	public GroupDb(){
+	public GroupLabelDb(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/SartoriWLC?"+"user=SartoriWLC&password=tM6GdwYQ");
@@ -29,61 +28,11 @@ public class GroupDb {
 		}
 	}
 	
-	public boolean insert_group(Group g){
+	public boolean create_gl(GroupLabel gl){
+		String sql = "";
 		boolean res = true;
-		String name = g.getGroup_name();
-		String uri = g.getGroup_uri();
-		if(name == null || uri == null) res = false;
-		else{
-			String sql = "INSERT INTO `group` VALUES (NULL,'" + name + "','" + uri + "')";
-			try {
-				stm.execute(sql);
-			} catch (SQLException e) {
-				res = false;			
-			}
-		}
-		close_db();
- 		return res;
-	}
-	
-	public Group[] query_group(Group g){
-		Group[] res = null;
-		String sql2 = "";
-		ArrayList<String> fields = get_fields(g, true);
-		for (int i = 0; i < fields.size(); i++){
-			if (i == 0) sql2 = "where " + fields.get(i);
-			else sql2 += " and " + fields.get(i);
-		}
-		
-		String sql = "SELECT * FROM `group`" + sql2;
-		try {
-			res_set = stm.executeQuery(sql);
-			res = to_group_beans();
-		} catch (SQLException e) {
-			res = null;
-		}
-		close_db();
-		return res;
-	}
-	
-	public boolean update_group(Group mg, Group ug){
-		boolean res = true;
-		String sql;
-		String sql_set = "";
-		String sql_where = "";
-		ArrayList<String> f_match = get_fields(mg, false);
-		ArrayList<String> f_upd = get_fields(ug, false);
-		if (f_upd.size() == 0) res = false;
-		else{
-			for (int i = 0; i < f_upd.size(); i++){
-				if (i == 0) sql_set = " set " + f_upd.get(i);
-				else sql_set += ", " + f_upd.get(i);
-			}
-			for (int k = 0; k < f_match.size(); k++){
-				if (k == 0) sql_where = " where " + f_match.get(k);
-				else sql_where += " and " + f_match.get(k);
-			}
-			sql = "UPDATE `group`" + sql_set + sql_where;
+		if (gl.getId_group() > 0 && gl.getId_label() > 0){
+			sql = "INSERT INTO `group_label` values (" + gl.getId_group() + ", " + gl.getId_label() + ")";
 			try {
 				stm.execute(sql);
 			} catch (SQLException e) {
@@ -94,26 +43,74 @@ public class GroupDb {
 		return res;
 	}
 	
-	public boolean delete_group(Group g){
-		boolean res = true;
-		ArrayList<String> fields = get_fields(g,true);
+	public GroupLabel[] query_gl(GroupLabel gl){
+		GroupLabel[] res = null;
 		String sql2 = "";
+		ArrayList<String> fields = get_fields(gl);
 		for (int i = 0; i < fields.size(); i++){
 			if (i == 0) sql2 = " where " + fields.get(i);
 			else sql2 += " and " + fields.get(i);
 		}
-		String sql = "DELETE FROM `group`" + sql2;
+		String sql = "SELECT * FROM `group_label`" + sql2;
 		try {
-			stm.execute(sql);
+			res_set = stm.executeQuery(sql);
+			res = to_grouplabel_beans();
 		} catch (SQLException e) {
-			res = false;
+			res = null;
 		}
 		close_db();
 		return res;
 	}
 	
-	private Group[] to_group_beans(){
-		Group[] res = null;
+	public boolean update_gl(GroupLabel m_gl, GroupLabel u_gl){
+		boolean res = true;
+		String sql_set = "";
+		String sql_where = "";
+		ArrayList<String> m_fields = get_fields(m_gl);
+		ArrayList<String> u_fields = get_fields(u_gl);
+		if (u_fields.size() == 0) res = false;
+		else {
+			for (int i = 0; i < u_fields.size(); i++){
+				if (i == 0) sql_set = " set " + u_fields.get(i);
+				else sql_set += ", " + u_fields.get(i);
+			}
+			for (int k = 0; k < m_fields.size(); k++){
+				if (k == 0) sql_where = " where " + m_fields.get(k);
+				else sql_where += ", " + m_fields.get(k);
+			}
+			String sql = "UPDATE `group_label`" + sql_set + sql_where;
+			try {
+				stm.execute(sql);
+			} catch (SQLException e) {
+				res = false;
+			}
+		}
+		close_db();
+		return res;
+	}
+	
+	public boolean delete_gl(GroupLabel gl){
+		boolean res = true;
+		String sql2 = "";
+		String sql = "";
+		ArrayList<String> fields = get_fields(gl);
+		for (int i = 0; i < fields.size(); i++){
+			if (i == 0) sql2 = " where " + fields.get(i);
+			else sql2 += " and " + fields.get(i);
+		}
+		sql = "DELETE FROM `group_label`" + sql2;
+		try {
+			stm.execute(sql);
+		} catch (SQLException e) {
+			res = false;
+		}
+		
+		close_db();
+		return res;
+	}
+	
+	private GroupLabel[] to_grouplabel_beans(){
+		GroupLabel[] res;
 		int count = 0;
 		try {
 			res_set.last();
@@ -122,36 +119,31 @@ public class GroupDb {
 		} catch (SQLException e) {
 			res = null;
 		}
-		res = new Group[count];
-		count = 0;
+		res = new GroupLabel[count];
+		int i = 0;
 		try {
 			while (res_set.next()){
-				res[count] = new Group();
-				res[count].setGroup_name(res_set.getString("group_name"));
-				res[count].setGroup_uri(res_set.getString("group_uri"));
-				res[count].setId_group(res_set.getInt("id_group"));
-				count++;
+				res[i] = new GroupLabel();
+				res[i].setId_group(res_set.getInt("id_group"));
+				res[i].setId_label(res_set.getInt("id_label"));
+				i++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return res;
+		return res;		
 	}
 	
-	private ArrayList<String> get_fields(Group g, boolean get_id){
-		String id, name, uri;
+	private ArrayList<String> get_fields(GroupLabel gl){
+		String gr, lab;
 		ArrayList<String> fields = new ArrayList<String>();
-		if (g.getId_group() > 0 && get_id){
-			id = "id_group = " + Integer.toString(g.getId_group());
-			fields.add(id);
+		if (gl.getId_group() > 0){
+			gr = "id_group = " + Integer.toString(gl.getId_group());
+			fields.add(gr);
 		}
-		if (g.getGroup_name() != null){
-			name = "group_name = '" + g.getGroup_name() + "' ";
-			fields.add(name);
-		}
-		if (g.getGroup_uri() != null){
-			uri = "group_uri = '" + g.getGroup_uri() + "' ";
-			fields.add(uri);
+		if (gl.getId_label() > 0){
+			lab = "id_label = '" + gl.getId_label() + "' ";
+			fields.add(lab);
 		}
 		return fields;
 	}
@@ -182,4 +174,6 @@ public class GroupDb {
 			res_set = null;
 		}
 	}
+	
+	
 }
