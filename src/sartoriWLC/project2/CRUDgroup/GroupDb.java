@@ -71,7 +71,7 @@ public class GroupDb {
 		String sql;
 		String sql_set = "";
 		String sql_where = "";
-		ArrayList<String> f_match = get_fields(mg, false);
+		ArrayList<String> f_match = get_fields(mg, true);
 		ArrayList<String> f_upd = get_fields(ug, false);
 		if (f_upd.size() == 0) res = false;
 		else{
