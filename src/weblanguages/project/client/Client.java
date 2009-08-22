@@ -30,8 +30,8 @@ public class Client {
 	public Client(){
 		//test_eval();
 		//test_coau();
-		//test_cp();
-		test_cg();
+		test_cp();
+		//test_cg();
 		//test_sim();
 	}
 	
@@ -107,11 +107,26 @@ public class Client {
 	
 	public void test_cp(){
 		Person p = new Person();
-		p.setFirst_name("This is a test");
+		Person[] r;
+		//p.setFirst_name("Moar2");
+		//p.setLast_name("Fud");
+		//p.setCitizenship("Kitteh");
+		//p.setTitle("kth.");
+		//p.setEmail("me@kitteh.lol");
+		p.setPerson_uri("http://me.kitteh.lol");
 		serv_cp = new PersonOperationServiceLocator();
 		try {
 			stub_cp = serv_cp.getSartoriWLC_CRUDPerson();
-			System.out.println(stub_cp.deletePerson(p));			
+			r = stub_cp.readPerson(p);
+			for (int i = 0; i < r.length; i++){
+				System.out.println(r[i].getId_person());
+				System.out.println(r[i].getFirst_name());
+				System.out.println(r[i].getLast_name());
+				System.out.println(r[i].getCitizenship());
+				System.out.println(r[i].getTitle());
+				System.out.println(r[i].getEmail());
+				System.out.println(r[i].getPerson_uri());
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

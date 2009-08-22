@@ -14,7 +14,8 @@ public class PersonOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean createPerson(Person person){
-		return true;
+		PersonDb db = new PersonDb();
+		return db.insert_person(person);
 	}
 	
 	/**
@@ -25,10 +26,8 @@ public class PersonOperation {
 	 * @return an array of Person beans satisfying the search criteria 
 	 */
 	public Person[] readPerson(Person person){
-		Person p = new Person();
-		Person[] res = {p};
-		p.setFirst_name("Prova");
-		return res;
+		PersonDb db = new PersonDb();
+		return db.query_person(person);
 	}
 	
 	/**
