@@ -106,19 +106,23 @@ public class Client {
 	}
 	
 	public void test_cp(){
-		Person p = new Person();
+		PersonLabel p = new PersonLabel();
+		Person p2 = new Person();
 		Person[] r;
+		p2.setCitizenship("Nowhere2");
 		//p.setFirst_name("Moar2");
 		//p.setLast_name("Fud");
 		//p.setCitizenship("Kitteh");
 		//p.setTitle("kth.");
 		//p.setEmail("me@kitteh.lol");
-		p.setPerson_uri("http://me.kitteh.lol");
+		p.setId_user(2);
+		//p.setId_label(12);
 		serv_cp = new PersonOperationServiceLocator();
 		try {
 			stub_cp = serv_cp.getSartoriWLC_CRUDPerson();
-			r = stub_cp.readPerson(p);
-			for (int i = 0; i < r.length; i++){
+		//	System.out.println(stub_cp.readPerson(p2)[0].getCitizenship());
+			System.out.println(stub_cp.deletePersonLabel(p));
+		/*	for (int i = 0; i < r.length; i++){
 				System.out.println(r[i].getId_person());
 				System.out.println(r[i].getFirst_name());
 				System.out.println(r[i].getLast_name());
@@ -126,7 +130,7 @@ public class Client {
 				System.out.println(r[i].getTitle());
 				System.out.println(r[i].getEmail());
 				System.out.println(r[i].getPerson_uri());
-			}
+			}*/
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

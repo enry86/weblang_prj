@@ -39,7 +39,8 @@ public class PersonOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean updatePerson(Person match_person, Person upd_person){
-		return true;
+		PersonDb db = new PersonDb();
+		return db.update_person(match_person, upd_person);
 	}
 	
 	/**
@@ -48,7 +49,8 @@ public class PersonOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean deletePerson(Person match_person){
-		return true;
+		PersonDb db = new PersonDb();
+		return db.delete_person(match_person);
 	}
 	
 	
@@ -58,7 +60,8 @@ public class PersonOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean createPersonLabel(PersonLabel pers_label){
-		return true;
+		PersonLabelDb db = new PersonLabelDb();
+		return db.create_pl(pers_label);
 	}
 	
 	/**
@@ -67,11 +70,8 @@ public class PersonOperation {
 	 * @return array of PersonLabel beans satisfying the search criteria
 	 */
 	public PersonLabel[] readPersonLabel(PersonLabel pers_label){
-		PersonLabel pl = new PersonLabel();
-		PersonLabel[] res = {pl};
-		pl.setId_label(0);
-		pl.setId_user(1);
-		return res;
+		PersonLabelDb db = new PersonLabelDb();
+		return db.query_pl(pers_label);
 	}
 	
 	/**
@@ -83,15 +83,17 @@ public class PersonOperation {
 	 * @return success or failure of the operation
 	 */
 	public boolean updatePersonLabel(PersonLabel match_pers_label, PersonLabel upd_pers_label){
-		return true;
+		PersonLabelDb db = new PersonLabelDb();
+		return db.update_pl(match_pers_label, upd_pers_label);
 	}
 	
 	/**
 	 * Deletes the entries in the table which satisfy the search criteria
-	 * @param match_pers_label bean containing the seearch criteria
+	 * @param match_pers_label bean containing the search criteria
 	 * @return success or failure of the operation
 	 */
 	public boolean deletePersonLabel(PersonLabel match_pers_label){
-		return true;
+		PersonLabelDb db = new PersonLabelDb();
+		return db.delete_pl(match_pers_label);
 	}
 }
