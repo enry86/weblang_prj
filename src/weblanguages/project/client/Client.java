@@ -9,6 +9,7 @@ import similar.stub.*;
 
 import it.cg.wl.sartoriWLC.*;
 import it.cp.wl.sartoriWLC.*;
+import it.sl.wl.sartoriWLC.*;
 
 
 public class Client {
@@ -27,11 +28,15 @@ public class Client {
 	AuthSimilar stub_sim;
 	AuthSimilarService serv_sim;
 	
+	SearchLabel stub_sl;
+	SearchLabelService serv_sl;
+	
 	public Client(){
 		//test_eval();
 		//test_coau();
-		test_cp();
+		//test_cp();
 		//test_cg();
+		test_sl();
 		//test_sim();
 	}
 	
@@ -139,18 +144,21 @@ public class Client {
 	}
 	
 	public void test_cg(){
-		GroupLabel g = new GroupLabel();
-		GroupLabel g2 = new GroupLabel();
-		GroupLabel[] r;
-		g.setId_group(7);
-		g2.setId_label(3);
+		Group g = new Group();
+		Group g2 = new Group();
+		Group[] r;
+		//g.setId_group(7);
+		//g2.setId_label(3);
 		//g.setId_label(1);
-		//g.setGroup_name("Science2");
-		//g2.setGroup_uri("http://lolololool.3");
+		g.setGroup_name("Science");
+		g.setGroup_uri("http://science.group.it");
 		serv_cg = new GroupOperationServiceLocator();
 		try {
 			stub_cg = serv_cg.getSartoriWLC_CRUDGroup();
-			System.out.println(stub_cg.updateGroupLabel(g,g2));
+			r = stub_cg.readGroup(g);
+			for (int i = 0; i < r.length; i++){
+				System.out.println(r[i].getGroup_name());
+			}
 			
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -168,6 +176,33 @@ public class Client {
 			System.out.println(r.getAb_similarity());
 			System.out.println(r.getBa_similarity());
 			System.out.println(r.getGeneral_similarity());
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+			
+		
+	}
+	
+	public void test_sl(){
+		Item[] r;
+		Label l = new Label();
+		Label l2 = new Label();
+		l.setId_label(3);	
+		l2.setLabel_name("fuffa");
+		Label[] arrl = {l, l2};
+		serv_sl = new SearchLabelServiceLocator();
+		try {
+			stub_sl = serv_sl.getSartoriWLC_SearchLabel();
+			r = stub_sl.searchAllLabel(arrl);
+			for (int i = 0; i < r.length; i++){
+				System.out.println(r[i].getId_item());
+				System.out.println(r[i].getItem_name());
+				System.out.println(r[i].getItem_type());
+				System.out.println(r[i].getItem_uri());
+				System.out.println("##########");
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

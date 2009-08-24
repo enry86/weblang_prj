@@ -14,10 +14,8 @@ public class SearchLabel {
 	 * @return an array of Item beans satisfying the search criteria
 	 */
 	public Item[] searchLabel(Label match_label){
-		Item i = new Item();
-		Item[] res = {i};
-		i.setId_item(0);
-		return res;
+		SearchLabelDb db = new SearchLabelDb();
+		return db.search_single(match_label);
 	}
 	
 	/**
@@ -27,10 +25,8 @@ public class SearchLabel {
 	 * @return array of Item beans satisfying the search criteria
 	 */
 	public Item[] searchAnyLabel(Label[] match_labels){
-		Item i = new Item();
-		Item[] res = {i};
-		i.setId_item(0);
-		return res;
+		SearchLabelDb db = new SearchLabelDb();
+		return db.search_multi(match_labels, false);
 	}
 	
 	/**
@@ -40,9 +36,7 @@ public class SearchLabel {
 	 * @return array of Item beans satisfying the search criteria
 	 */
 	public Item[] searchAllLabel(Label[] match_labels){
-		Item i = new Item();
-		Item[] res = {i};
-		i.setId_item(0);
-		return res;
+		SearchLabelDb db = new SearchLabelDb();
+		return db.search_multi(match_labels, true);
 	}	
 }
