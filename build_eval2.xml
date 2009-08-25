@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="GroupEval2" default="init" basedir=".">
+
+	<!-- 
+    ======================
+    INITIALIZATION SECTION 
+    ======================
+    -->
+
+	<target name="init">
+		<property file="properties/Eval2/build_eval2.properties" />
+		<property file="properties/Eval2/project_eval2.properties" />
+		
+		<echo message="ANT HOME: ${ant.home}"/>
+                <echo message=""/>
+		<echo message="AXIS CLASSPATH: ${libs.AxisLibrary.classpath}"/>
+                <echo message=""/>
+                <echo message="In caso di errore verificare che in ANT HOME non ci sia axis-ant.jar"/>
+		<taskdef resource="axis-tasks.properties" classpath="${libs.AxisLibrary.classpath}" />
+
+	</target>
+
+
+	<!--
+    ===================
+    COMPILATION SECTION
+    ===================
+    -->
+	<target name="do-compile" depends="init, clean">
+		<mkdir dir="${build.service.local}" />
+		<javac srcdir="${src.service}" destdir="${build.service}" debug="on" classpath="${javac.classpath}" />
+		<javac srcdir="${src.service}" destdir="${build.service.local}" debug="on" classpath="${javac.classpath}" />
+	</target>
+
+
+	<target name="do-compile-stub" depends="init">
+		<mkdir dir="${build.stub}" />
+		<javac srcdir="${src.stub}" destdir="${build.stub}" debug="on" classpath="${javac.classpath}" />
+	</target>
+
+
+	<!--
+     Compile the simple test client for the web service  
+    -->
+	<target name="do-test" depends="init, create-stubs">
+		<mkdir dir="${build.test}" />
+		<javac srcdir="${src.test}" destdir="${build.test}" debug="on" classpath="${test.classpath}" />
+	</target>
+
+
+	<!--
+    ====================
+    JAR BUILDING SECTION
+    ====================
+    -->
+	<target name="pre-jar" depends="init">
+		<mkdir dir="${dist.service}" />
+	</target>
+
+	<target name="do-jar" depends="init,do-compile,pre-jar" description="Build JAR.">
+		<jar destfile="${dist.service.jar}" basedir="${build.service.local}" />
+	</target>
+
+
+	<target name="pre-jar-stub" depends="init">
+		<mkdir dir="${dist.stub}" />
+	</target>
+
+	<target name="do-jar-stub" depends="init,do-compile-stub,pre-jar-stub">
+		<jar destfile="${dist.stub.jar}" basedir="${build.stub}" />
+	</target>
+
+	<!--
+    ===============
+    DEPLOYMENT SECTION
+    ===============
+    -->
+	<target name="deploy" depends="do-jar">
+		<axis-admin port="${target.port}" hostname="${target.server}" failonerror="true" servletpath="${target.appname}/services/AdminService" debug="true" xmlfile="${deployment.wsdd}" />
+	</target>
+
+	<target name="undeploy" depends="init">
+		<axis-admin port="${target.port}" hostname="${target.server}" failonerror="true" servletpath="${target.appname}/services/AdminService" debug="true" xmlfile="${undeployment.wsdd}" />
+	</target>
+
+	<!--
+    ===============
+    WSDL2JAVA SECTION
+    ===============
+    -->
+	
+	<target name="create-src-stubs" depends="clean-src-stub">
+		<mkdir dir="${src.stub}" />
+		<axis-wsdl2java output="${src.stub}" testcase="false"   verbose="true" url="${local.wsdl}">
+			 <mapping
+			 	namespace= "http://${target.server}:${target.port}/${target.appname}/services/${service.name}"
+				package="sartorienrico.eval2.stub" />
+		</axis-wsdl2java>
+		
+	</target>
+		
+	<target name="create-stubs" depends="create-src-stubs, do-jar-stub">
+	</target>
+		
+	<target name="all" depends="create-stubs">
+	</target>
+					
+	
+	<!--
+    ===============
+    CLEANUP SECTION
+    ===============
+    -->
+	<target name="clean" depends="init" description="Clean build products.">
+		<delete dir="${build.service.local}/weblanguages/project/eval" />
+		<delete dir="${build.test}" />
+		<delete dir="${build.stub}" />
+		<delete dir="${dist.service}" />
+		<delete dir="${dist.stub}" />
+
+	</target>
+
+	<target name="clean-src-stub" depends="init" description="Clean src stub.">
+		<delete dir="${src.stub}" />
+	</target>
+	
+	<!--
+	    ===============
+	    JAVA2WSDL SECTION
+	    ===============
+	-->
+
+	<target name="create-wsdl" depends="do-jar" description="gen WSDL from java">
+		<mkdir dir="${wsdl}" />
+		<axis-java2wsdl classname="${j2w.classname}" namespace="${j2w.namespace}" location="${j2w.location}" style="${j2w.style}" output="${j2w.wsdl}">
+	   	 <classpath>
+	   	  <path path="${wsdl.classpath}" />
+	   	 </classpath>
+		</axis-java2wsdl> 
+	   </target>
+
+
+</project>
+
+
+
+
+

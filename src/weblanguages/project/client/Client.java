@@ -4,12 +4,13 @@ import java.rmi.RemoteException;
 import javax.xml.rpc.ServiceException;
 
 import coauthors.stub.*;
-import groupeval.stub.*;
+//import groupeval.stub.*;
 import similar.stub.*;
 
 import it.cg.wl.sartoriWLC.*;
 import it.cp.wl.sartoriWLC.*;
 import it.sl.wl.sartoriWLC.*;
+import it.eval.wl.sartoriWLC.*;
 
 
 public class Client {
@@ -32,11 +33,11 @@ public class Client {
 	SearchLabelService serv_sl;
 	
 	public Client(){
-		//test_eval();
+		test_eval();
 		//test_coau();
 		//test_cp();
 		//test_cg();
-		test_sl();
+		//test_sl();
 		//test_sim();
 	}
 	
@@ -52,7 +53,7 @@ public class Client {
 		
 		serv_e=new GroupEvalServiceLocator();
 		try {
-			stub_e=serv_e.getGroupEval();
+			stub_e=serv_e.getSartoriWLC_GroupEval();
 			res = stub_e.getAuthorsRank(input);
 			
 			
@@ -189,13 +190,13 @@ public class Client {
 		Item[] r;
 		Label l = new Label();
 		Label l2 = new Label();
-		l.setId_label(3);	
+		l.setId_label(1);	
 		l2.setLabel_name("fuffa");
 		Label[] arrl = {l, l2};
 		serv_sl = new SearchLabelServiceLocator();
 		try {
 			stub_sl = serv_sl.getSartoriWLC_SearchLabel();
-			r = stub_sl.searchAllLabel(arrl);
+			r = stub_sl.searchAnyLabel(arrl);
 			for (int i = 0; i < r.length; i++){
 				System.out.println(r[i].getId_item());
 				System.out.println(r[i].getItem_name());

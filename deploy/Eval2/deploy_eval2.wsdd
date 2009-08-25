@@ -1,0 +1,10 @@
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" 
+xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="SartoriWLC_GroupEval" provider="java:RPC">
+		<parameter name="wsdlTargetNamespace" value="http://sartoriWLC.wl.eval.it/"/>		
+		<parameter name="className" value="sartoriWLC.project2.eval2.GroupEval"/>
+		<parameter name="allowedMethods" value="*"/>
+		<parameter name="axis.xmlEncoding" value="UTF-16"/>
+		<beanMapping qname="ns1:EvalBean" xmlns:ns1="http://sartoriWLC.wl.eval.it/" languageSpecificType="java:sartoriWLC.project2.eval2.EvalBean"/>
+	</service>
+</deployment>

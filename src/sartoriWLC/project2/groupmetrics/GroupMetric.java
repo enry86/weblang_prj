@@ -16,9 +16,8 @@ public class GroupMetric {
 	 * the computed metric
 	 */
 	public GMetric getGroupMetric(int id_group, int id_metric){
-		GMetric gm = new GMetric();
-		gm.setMetric_name("Prova");
-		return gm;
+		GMetricDb db = new GMetricDb();
+		return db.eval_group(id_group, id_metric);
 	}
 	
 }
