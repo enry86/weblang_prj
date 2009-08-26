@@ -11,7 +11,7 @@ import it.cg.wl.sartoriWLC.*;
 import it.cp.wl.sartoriWLC.*;
 import it.sl.wl.sartoriWLC.*;
 import it.eval.wl.sartoriWLC.*;
-
+import it.gm.wl.sartoriWLC.*;
 
 public class Client {
 	GroupEval stub_e;
@@ -32,13 +32,17 @@ public class Client {
 	SearchLabel stub_sl;
 	SearchLabelService serv_sl;
 	
+	GroupMetric stub_gm;
+	GroupMetricService serv_gm;
+	
 	public Client(){
-		test_eval();
+		//test_eval();
 		//test_coau();
 		//test_cp();
 		//test_cg();
 		//test_sl();
 		//test_sim();
+		test_gm();
 	}
 	
 	private void test_eval(){
@@ -211,6 +215,23 @@ public class Client {
 		}
 			
 		
+	}
+	
+	public void test_gm(){
+		GMetric g;
+		serv_gm = new GroupMetricServiceLocator();
+		try {
+			stub_gm = serv_gm.getSartoriWLC_GroupMetrics();
+			g = stub_gm.getGroupMetric(3, 2);
+			System.out.println(g.getMetric_name());
+			System.out.println(g.getMetric_type());
+			System.out.println(g.getMetric_value());
+			System.out.println(g.getGroup_metric_uri());
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args){

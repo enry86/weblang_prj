@@ -1,6 +1,6 @@
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" 
 xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
-	<service name="SartoriWLC_GroupMetric" provider="java:RPC">
+	<service name="SartoriWLC_GroupMetrics" provider="java:RPC">
 		<parameter name="wsdlTargetNamespace" value="http://sartoriWLC.wl.gm.it/"/>	
 		<parameter name="className" value="sartoriWLC.project2.groupmetrics.GroupMetric"/>
 		<parameter name="allowedMethods" value="*"/>

@@ -33,7 +33,7 @@ public class GMetricDb {
 	}
 
 	public GMetric eval_group(int id_group, int id_metric){
-		GMetric res = null;
+		GMetric res = new GMetric();
 		String[] auth = get_authors(id_group);
 		get_metric_info(id_metric, res);
 		if (res != null && auth.length > 0){
@@ -92,6 +92,7 @@ public class GMetricDb {
 		try {
 			while(rs.next()){
 				res[i] = rs.getString("name");
+				i++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -19,5 +19,4 @@ public class GroupMetric {
 		GMetricDb db = new GMetricDb();
 		return db.eval_group(id_group, id_metric);
 	}
-	
 }
