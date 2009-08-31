@@ -2,14 +2,14 @@ package weblanguages.project.client.gui;
 
 import it.cg.wl.sartoriWLC.Group;
 import it.cg.wl.sartoriWLC.GroupLabel;
-import it.cp.wl.sartoriWLC.PersonLabel;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 import java.rmi.RemoteException;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import weblanguages.project.client.Connector;
 
 public class CgPanel extends JPanel{
@@ -49,23 +49,34 @@ public class CgPanel extends JPanel{
 		JPanel res = new JPanel();
 		JPanel but = new JPanel();
 		JPanel fie = new JPanel();
+		JPanel ufie = new JPanel();
+		Border b = BorderFactory.createTitledBorder("Group");
 		ins = new JButton("Insert");
 		del = new JButton("Delete");
 		src = new JButton("Search");
+		upd = new JButton("Update");
+		fie.add(new JLabel("Select: "));
+		ufie.add(new JLabel("Update with: "));
 		for (int i = 0; i < num; i++){
 			params[i] = new JTextField(10);
+			upd_p[i] = new JTextField(10);
 			fie.add(params[i]);
+			ufie.add(upd_p[i]);
 		}
+		but.add(upd);
 		but.add(ins);
 		but.add(del);
 		but.add(src);
 		but.add(status);
+		upd.addMouseListener(cpl);
 		ins.addMouseListener(cpl);
 		del.addMouseListener(cpl);
 		src.addMouseListener(cpl);		
 		res.setLayout(new BorderLayout());
 		res.add(fie, BorderLayout.NORTH);
+		res.add(ufie, BorderLayout.CENTER);
 		res.add(but, BorderLayout.SOUTH);
+		res.setBorder(b);
 		return res;
 	}
 	
@@ -99,6 +110,8 @@ public class CgPanel extends JPanel{
 		res.add(fie, BorderLayout.NORTH);
 		res.add(ufie, BorderLayout.CENTER);
 		res.add(but, BorderLayout.SOUTH);
+		Border b = BorderFactory.createTitledBorder("Group Label");
+		res.setBorder(b);
 		return res;
 	}
 	

@@ -2,16 +2,13 @@ package weblanguages.project.client.gui;
 
 import it.cp.wl.sartoriWLC.Person;
 import it.cp.wl.sartoriWLC.PersonLabel;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 import java.rmi.RemoteException;
-
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import weblanguages.project.client.Connector;
 
 public class CpPanel extends JPanel{
