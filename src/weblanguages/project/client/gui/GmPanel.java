@@ -1,5 +1,9 @@
 package weblanguages.project.client.gui;
 
+import it.eval.wl.sartoriWLC.EvalBean;
+import it.eval.wl.sartoriWLC.GroupEval;
+import it.eval.wl.sartoriWLC.GroupEvalService;
+import it.eval.wl.sartoriWLC.GroupEvalServiceLocator;
 import it.gm.wl.sartoriWLC.GMetric;
 
 import java.awt.BorderLayout;
@@ -81,7 +85,12 @@ public class GmPanel extends JPanel{
 					int m = ((Integer)p.metric.getSelectedItem()).intValue();
 					res = c.gm.getGroupMetric(g, m);
 					p.out.setText(p.get_value(res));
+					//GroupEvalService serv = new GroupEvalServiceLocator();
+					//GroupEval st = serv.getSartoriWLC_GroupEval();
+					//EvalBean eb = st.getAuthorsRank(new String[] {"Fabio Casati"});
+					//System.out.println(eb.getCit_avg());
 				} catch (Exception e1) {
+					e1.printStackTrace();
 					p.out.setText("ERR");
 				}
 			}

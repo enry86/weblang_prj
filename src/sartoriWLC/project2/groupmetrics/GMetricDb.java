@@ -1,5 +1,8 @@
 package sartoriWLC.project2.groupmetrics;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,12 +38,38 @@ public class GMetricDb {
 	public GMetric eval_group(int id_group, int id_metric){
 		GMetric res = new GMetric();
 		String[] auth = get_authors(id_group);
+		String eval = null;
 		get_metric_info(id_metric, res);
 		if (res != null && auth.length > 0){
-			res.setMetric_value(get_evaluation(auth, id_metric));
+			eval = get_evaluation(auth, id_metric);
+		}
+		if (eval != null){
+			res.setMetric_value(eval);
+			res.setGroup_metric_uri(write_page(res, id_group));
 		}
 		close_db();
+		if (res == null) res = new GMetric();
 		return res;
+	}
+	
+	private String write_page(GMetric m, int g){
+		//String host = "http://demo.liquidpub.org:8180/axis/";
+		String host = "http://127.0.0.1:8080/axis/";
+		String name = "metric_" + m.getMetric_name() + "_group_" + g + ".html";
+		//String path = "/usr/share/tomcat5.5-webapps/axis/";
+		String path = "/opt/tomcat/webapps/axis/";
+		String content = "<html><head><title>Group Metric Computation</title></head><body>";
+		content += "<h3>Computation of " + m.getMetric_name() + " for the group " + g + "</h3>";
+		content += "<p>Value = " + m.getMetric_value() + "</p></body></html>";
+		try {
+			FileWriter fw = new FileWriter(path + name);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(content);
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return host + name;
 	}
 	
 	private String get_evaluation(String[] auths, int metric){
