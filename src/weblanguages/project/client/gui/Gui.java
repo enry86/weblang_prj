@@ -42,7 +42,7 @@ public class Gui {
 		tp.addTab("CRUD Person", new CpPanel(c));
 		tp.addTab("CRUD Group", new CgPanel(c));
 		tp.addTab("Search Label", new SlPanel(c));
-		tp.addTab("Group Metric", new JPanel());
+		tp.addTab("Group Metric", new GmPanel(c));
 		tmp.add(tp);
 		return tmp;
 	}
