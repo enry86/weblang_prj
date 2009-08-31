@@ -53,11 +53,11 @@ public class GMetricDb {
 	}
 	
 	private String write_page(GMetric m, int g){
-		//String host = "http://demo.liquidpub.org:8180/axis/";
-		String host = "http://127.0.0.1:8080/axis/";
+		String host = "http://demo.liquidpub.org:8180/axis/";
+		//String host = "http://127.0.0.1:8080/axis/";
 		String name = "metric_" + m.getMetric_name() + "_group_" + g + ".html";
-		//String path = "/usr/share/tomcat5.5-webapps/axis/";
-		String path = "/opt/tomcat/webapps/axis/";
+		String path = "/usr/share/tomcat5.5-webapps/axis/";
+		//String path = "/opt/tomcat/webapps/axis/";
 		String content = "<html><head><title>Group Metric Computation</title></head><body>";
 		content += "<h3>Computation of " + m.getMetric_name() + " for the group " + g + "</h3>";
 		content += "<p>Value = " + m.getMetric_value() + "</p></body></html>";

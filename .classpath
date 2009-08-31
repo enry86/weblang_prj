@@ -22,6 +22,6 @@
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/AuthSimilarity/dist/AuthSimilarityStub.jar"/>
 	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_GroupEval/dist/SartoriWLC_GroupEvalStub.jar"/>
-	<classpathentry kind="lib" path="/home/enry/eclipse/weblang_prj/stubs/SartoriWLC_GroupMetrics/dist/SartoriWLC_GroupMetricsStub.jar"/>
+	<classpathentry kind="lib" path="stubs/SartoriWLC_GroupMetrics/dist/SartoriWLC_GroupMetricsStub.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
