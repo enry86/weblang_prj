@@ -21,11 +21,13 @@ public class EvalParser extends DefaultHandler {
 	private Hashtable<String,String> tmp_res;
 	private String metric;
 	private boolean err;
+	private boolean first;
 	private ArrayList<String> labels;
 	
 	public EvalParser(){
 		labels = new ArrayList<String>(4);
 		err = true;
+		first = true;
 		spf = SAXParserFactory.newInstance();
 		chars = new StringBuffer();
 		labels.add("h-index");
@@ -43,6 +45,8 @@ public class EvalParser extends DefaultHandler {
 	
 	public Hashtable<String,String> getEvaluation(String auth_url){
 		tmp_res = new Hashtable<String,String>();
+		first = true;
+		err = true;
 		try {
 			sax.parse(base_url + auth_url, this);
 		} catch (SAXException e) {
@@ -56,7 +60,8 @@ public class EvalParser extends DefaultHandler {
 	
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException{
 		chars.setLength(0);
-		if (err = true){
+		if (first == true){
+			first = false;
 			if (qName.compareTo("error")==0) err = true;
 			else err = false;
 		}
