@@ -5,7 +5,6 @@ import it.cg.wl.sartoriWLC.*;
 import it.cp.wl.sartoriWLC.*;
 import it.gm.wl.sartoriWLC.*;
 import it.sl.wl.sartoriWLC.*;
-import it.eval.wl.sartoriWLC.*;
 
 public class Connector {
 	public GroupOperation go;
@@ -18,7 +17,6 @@ public class Connector {
 		PersonOperationService  cp_s = new PersonOperationServiceLocator();
 		SearchLabelService sl_s = new SearchLabelServiceLocator();
 		GroupMetricService gm_s = new GroupMetricServiceLocator();
-		GroupEvalService ge_s = new GroupEvalServiceLocator();
 
 		try {
 			go = cg_s.getSartoriWLC_CRUDGroup();

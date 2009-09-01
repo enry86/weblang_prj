@@ -5,7 +5,8 @@ import weblanguages.project.client.gui.Gui;
 public class Client {
 	public Client(){
 		Connector con = new Connector();
-		Gui gui = new Gui(con);
+		ConnLocal col = new ConnLocal();
+		Gui gui = new Gui(con, col);
 	}
 	
 	public static void main(String[] args){
