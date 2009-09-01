@@ -48,9 +48,9 @@ public class Gui {
 	
 	private JTabbedPane setup_phase1(){
 		JTabbedPane tmp = new JTabbedPane();
-		tmp.addTab("Coauthors", new JPanel());
-		tmp.addTab("Group Evaluation", new JPanel());
-		tmp.addTab("Author Similarity", new JPanel());
+		tmp.addTab("Coauthors", new CaPanel(l));
+		tmp.addTab("Authors Evaluation", new EvPanel(l));
+		tmp.addTab("Author Similarity", new AsPanel(l));
 		return tmp;
 	}
 	

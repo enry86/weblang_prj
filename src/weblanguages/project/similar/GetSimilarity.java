@@ -12,7 +12,7 @@ public class GetSimilarity {
 	
 	public SimilarBean get_value(){
 		SimilarBean res = null;
-		res = sp.retrieve_vals("dblp.xml");
+		res = sp.retrieve_vals("/home/enry/dblp.xml");
 		return res;
 	}
 	

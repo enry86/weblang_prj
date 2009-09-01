@@ -62,7 +62,7 @@ public class SimilParser extends DefaultHandler {
 		}
 		res.setAb_similarity(((float) c_ab) / ((float) c_a));
 		res.setBa_similarity(((float) c_ab) / ((float) c_b));
-		res.setGeneral_similarity(((float) c_ab) / ((float)(c_a + c_b)));
+		res.setGeneral_similarity(((float) c_ab) / ((float)(c_a + c_b - c_ab)));
 		return res;
 	}
 	
